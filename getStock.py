@@ -38,7 +38,6 @@ def getStockCode(date, creerFlag):
             if (data[0][3:6] == '600' or data[0][3:6] == '000' or data[0][3:6] == '002'):
                 fcode.write(data[0] + '\n')
                 code.append(data[0])
-        elif (creerFlag == 1):
             if (data[0][3:6] == '300' or data[0][3:6] == '301'):
                 fcode.write(data[0] + '\n')
                 code.append(data[0])

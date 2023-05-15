@@ -5,7 +5,7 @@ import pandas as pd
 def test():
     print("in get Stock")
 
-def getStockCode(date, creerFlag):
+def getStockCode(date):
     #### 登陆系统 ####
     lg = bs.login()
     # 显示登陆返回信息
@@ -19,6 +19,7 @@ def getStockCode(date, creerFlag):
 
     #### 打印结果集 ####
     data_list = []
+    print(data_list)
     while (rs.error_code == '0') & rs.next():
         # 获取一条记录，将记录合并在一起
         data_list.append(rs.get_row_data())
@@ -32,21 +33,13 @@ def getStockCode(date, creerFlag):
 
 
     code = []
+    print(1)
     for data in data_list:
-
-        if (creerFlag == 0):
-            if (data[0][3:6] == '600' or data[0][3:6] == '000' or data[0][3:6] == '002'):
-                fcode.write(data[0] + '\n')
-                code.append(data[0])
-            if (data[0][3:6] == '300' or data[0][3:6] == '301'):
-                fcode.write(data[0] + '\n')
-                code.append(data[0])
-        #elif (creerFlag == 2):
-            #if (data[0][3:6] == '600' or data[0][3:6] == '000' or data[0][3:6] == '002' or data[0][3:6] == '300'):
-                #fcode.write(data[0] + '\n')
-               #code.append(data[0])
-        else:
-            print("set creerFlag as 0, 1, 2")
+        if (data[0][3:6] == '600' or data[0][3:6] == '000' or \
+            data[0][3:6] == '002' or data[0][3:6] == '300' or \
+            data[0][3:6] == '301'):
+            fcode.write(data[0] + '\n')
+            code.append(data[0])
     fcode.close()
     print(len(code))
     #print(code)
@@ -62,5 +55,7 @@ def getStockCode(date, creerFlag):
     #### 登出系统 ####
     bs.logout()
     return code
-#date = '2020-10-21'
-#getStockCode(date)
+
+if __name__ == "__main__":
+    date = '2023-05-12'
+    getStockCode(date)

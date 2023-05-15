@@ -7,11 +7,12 @@ import K_line
 #import pandas as pd
 
 #爬取数据
-def spider_cur(codeDate, startDate, endDate, creerFlag):
+def spider_cur(codeDate, startDate, endDate):
     start = startDate
     end = endDate
 
-    code = getStock.getStockCode(codeDate, creerFlag)
+    code = getStock.getStockCode(codeDate)
+    print(code)
     K_line.get_K_Line(code, start, end)
 
 
@@ -21,5 +22,5 @@ if __name__ == '__main__':
     startDate = "2022-03-01"
     endDate = "2020-03-16"
     creerFlag = 2
-    spider_cur(codeDate, startDate, endDate, creerFlag)
+    spider_cur(codeDate, startDate, endDate)
 

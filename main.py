@@ -27,14 +27,10 @@ if __name__ == "__main__":
         pass
     elif len(sys.argv) == 2:
         spider = int(sys.argv[1])
-        pass
     elif len(sys.argv) == 3:
         spider = int(sys.argv[1])
-        creerFlag = int(sys.argv[2])
     elif len(sys.argv) == 4:
         spider = int(sys.argv[1])
-        creerFlag = int(sys.argv[2])
-        cal = int(sys.argv[3])
     else :
         print('Usage: ' + sys.argv[0] + ' [spider] ' + '[creerFlag]')
         print('spider: 0 do not get data, 1 get stock data')
@@ -45,7 +41,7 @@ if __name__ == "__main__":
 #    get_stock_inderstry.get_all_stock_inderstry()
 
     today = datetime.datetime.today()
-    delta = datetime.timedelta(days=0)
+    delta = datetime.timedelta(days=5)
     before_20_days = today - delta
     # 将日期转换为指定格式的字符串
     startDate = before_20_days.strftime("%Y-%m-%d")
@@ -58,7 +54,7 @@ if __name__ == "__main__":
 
     if (spider):
         print("need to spider\n")
-        spider_cur.spider_cur(codeDate, startDate, endDate, creerFlag)
+        spider_cur.spider_cur(codeDate, startDate, endDate)
     else:
         print("no need spider\n")
 

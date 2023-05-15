@@ -17,11 +17,4 @@ def merge_csv_file(bak, cur):
 
     curF.close()
     bakF.close()
-    pass
 
-if __name__ == "__main__":
-
-    bak = "./02.csv"
-    cur = "./01.csv"
-
-    merge_csv_file(bak, cur)

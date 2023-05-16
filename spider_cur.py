@@ -12,7 +12,6 @@ def spider_cur(codeDate, startDate, endDate):
     end = endDate
 
     code = getStock.getStockCode(codeDate)
-    print(code)
     K_line.get_K_Line(code, start, end)
 
 

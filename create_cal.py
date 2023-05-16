@@ -3,6 +3,7 @@
 import pandas as pd
 import getStock
 import common_def
+import os
 
 #@N: need to calculate num days.
 #@F: front day
@@ -55,8 +56,8 @@ def get_inderstry(codeList, newL):
 def output_data(name, code):
     sko.write(str(name), str(code))
 
-def get_stock_list(getDate, creerFlag):
-    clist = getStock.getStockCode(getDate, creerFlag)
+def get_stock_list(getDate):
+    clist = getStock.getStockCode(getDate)
     return clist
 
 def get_stock_content(code):
@@ -157,16 +158,14 @@ def _alg_cal_4d_con_red(sk):
     if sk is None:
         return
     cnt = len(sk)
-    if (cnt >= 4):
-        if (sk[cnt-4][2] < sk[cnt-4][5]):
-            if (sk[cnt-3][2] < sk[cnt-3][5]):
-                if (sk[cnt-2][2] < sk[cnt-2][5]):
-                    if(sk[cnt-1][2] < sk[cnt-1][5]):
-                        if(sk[cnt-1][10] > 3.3):
-                            code_4d_con_red.append(sk[0][1])
+    if (cnt >= 3):
+        if (sk[cnt-2][12] > 8.0):
+            if (sk[cnt-1][2] < sk[cnt-3][5]):
+                if (sk[cnt-0][2] < sk[cnt-2][5]):
+                        code_4d_con_red.append(sk[0][1])
 
 def alg_cal_4d_con_red(sko):
-    sko.write("\nbegin: 计算4天， 连续4天红色\n")
+    sko.write("\nbegin: 计算3天， >8 R R\n")
     get_inderstry(code_4d_con_red, inder_4d_con_red)
     for i in range(len(inder_4d_con_red)):
         sko.write(inder_4d_con_red[i])
@@ -195,34 +194,25 @@ def alg_cal_5d_4green_1red(sko):
 
 def alg_cal_call_func(clist):
     for c in clist:
-        sk = get_stock_content(c)
-        _alg_cal_2d_r20_tred(sk)
-        _alg_cal_3d_20_rred_tgreen(sk)
-        _alg_cal_4d_con_red(sk)
-        _alg_cal_5d_4green_1red(sk)
+        if c[3:6] == "300":
+            filePath = "./curday/"+c+".csv"
+            if os.path.exists(filePath):
+                print(c)
+                sk = get_stock_content(c)
+                _alg_cal_4d_con_red(sk)
 
 def alg_cal_output(creerFlag):
     if (creerFlag == 0):
         sko = open("./save/sksaveA.txt", "w")
     if (creerFlag == 1):
         sko = open("./save/sksave.txt", "w")
-#    alg_cal_1d20_point(sko)
-#    alg_cal_2d_r20_tgreen(sko)
-#    alg_cal_2d_r20_tred(sko)
-    alg_cal_2d_r20_tred(sko)
-    alg_cal_3d_20_rred_tgreen(sko)
     alg_cal_4d_con_red(sko)
-    alg_cal_5d_4green_1red(sko)
 
     sko.close()
 
 
 def create_cal_main(getDate, creerFlag):
-    #print(sk[0])
-    print("start")
-    print(common_def.dTing)
-    clist = get_stock_list(getDate, creerFlag)
+    clist = get_stock_list(getDate)
     alg_cal_call_func(clist)
     alg_cal_output(creerFlag)
-    print("end")
 

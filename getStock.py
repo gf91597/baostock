@@ -19,7 +19,6 @@ def getStockCode(date):
 
     #### 打印结果集 ####
     data_list = []
-    print(data_list)
     while (rs.error_code == '0') & rs.next():
         # 获取一条记录，将记录合并在一起
         data_list.append(rs.get_row_data())
@@ -33,7 +32,6 @@ def getStockCode(date):
 
 
     code = []
-    print(1)
     for data in data_list:
         if (data[0][3:6] == '600' or data[0][3:6] == '000' or \
             data[0][3:6] == '002' or data[0][3:6] == '300' or \

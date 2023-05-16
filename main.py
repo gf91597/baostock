@@ -40,13 +40,14 @@ if __name__ == "__main__":
 #get inderstry may not be used
 #    get_stock_inderstry.get_all_stock_inderstry()
 
+    codeDate = "2023-05-12"
+
     today = datetime.datetime.today()
-    delta = datetime.timedelta(days=5)
+    delta = datetime.timedelta(days=10)
     before_20_days = today - delta
     # 将日期转换为指定格式的字符串
     startDate = before_20_days.strftime("%Y-%m-%d")
     endDate = today.strftime("%Y-%m-%d")
-    codeDate = startDate
 
     print(startDate)
     print(endDate)
@@ -58,14 +59,4 @@ if __name__ == "__main__":
     else:
         print("no need spider\n")
 
-#    if cal == 1:
-#        if (creerFlag == 0):
-#            cal_A_stock(codeDate, creerFlag)
-#        elif (creerFlag == 1):
-#            cal_creer_stock(codeDate, creerFlag)
-#        else:
-#            print("do nothing, please set creerFlag as 0, 1, 2")
-#    else:
-#        print("do not cal anything\n")
-#        pass
-
+    create_cal.create_cal_main(codeDate, creerFlag)

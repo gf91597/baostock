@@ -1,23 +1,14 @@
 #!/usr/bin/python3
 import baostock as bs
 import pandas as pd
+import subprocess
 
-def merge_csv_file(bak, cur):
-    print("merge csv file")
-    print(bak)
-    print(cur)
-    curF = open(cur, "r+")
-    bakF = open(bak, "a+")
+import subprocess
 
-    lines = curF.readlines()
 
-    cnt = len(lines) - 1
 
-    for i in range(cnt):
-        bakF.write(lines[i+1])
-
-    curF.close()
-    bakF.close()
+#    curF.close()
+#    bakF.close()
 
 def get_K_Line(code, start, end):
     #### 登陆系统 ####
@@ -49,7 +40,7 @@ def get_K_Line(code, start, end):
         print(locate)
         result.to_csv(locate, index=False)
         bakLocate = "./curday_bak/"+cd+".csv"
-        merge_csv_file(bakLocate, locate)
+
     #print(result)
 
     #### 登出系统 ####

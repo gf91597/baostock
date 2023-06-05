@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import common_def
 import getStock
 import spider_cur

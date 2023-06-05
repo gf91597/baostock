@@ -32,10 +32,14 @@ def getStockCode(date):
 
 
     code = []
+    #for data in data_list:
+    #    if (data[0][3:6] == '600' or data[0][3:6] == '000' or \
+    #        data[0][3:6] == '002' or data[0][3:6] == '300' or \
+    #        data[0][3:6] == '301'):
+    #        fcode.write(data[0] + '\n')
+    #        code.append(data[0])
     for data in data_list:
-        if (data[0][3:6] == '600' or data[0][3:6] == '000' or \
-            data[0][3:6] == '002' or data[0][3:6] == '300' or \
-            data[0][3:6] == '301'):
+        if (data[0][3:6] == '300' or data[0][3:6] == '301'):
             fcode.write(data[0] + '\n')
             code.append(data[0])
     fcode.close()

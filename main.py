@@ -44,7 +44,7 @@ if __name__ == "__main__":
     codeDate = "2023-05-12"
 
     today = datetime.datetime.today()
-    delta = datetime.timedelta(days=10)
+    delta = datetime.timedelta(days=30)
     before_20_days = today - delta
     # 将日期转换为指定格式的字符串
     startDate = before_20_days.strftime("%Y-%m-%d")

@@ -44,7 +44,7 @@ inder_5d_4green_1red = []
 #计算连续6天， 2天红色， 两天绿色， 两天红色
 
 def get_inderstry(codeList, newL):
-    inder = open('./save/stock_industry.csv', 'r')
+    inder = open('./save/stock_industry.csv', 'r', encoding='gbk')
     lines = inder.readlines()
 
     for code in codeList:
@@ -197,16 +197,17 @@ def alg_cal_call_func(clist):
         if c[3:6] == "300":
             filePath = "./curday/"+c+".csv"
             if os.path.exists(filePath):
-                print(c)
                 sk = get_stock_content(c)
                 _alg_cal_4d_con_red(sk)
 
 def alg_cal_output(creerFlag):
     if (creerFlag == 0):
-        sko = open("./save/sksaveA.txt", "w")
+        sko = open("./save/sksaveA.txt", "w", encoding='utf-8')
     if (creerFlag == 1):
-        sko = open("./save/sksave.txt", "w")
+        sko = open("./save/sksave.txt", "w", encoding='utf-8')
     alg_cal_4d_con_red(sko)
+    alg_cal_5d_4green_1red(sko)
+    alg_cal_2d_r20_tred(sko)
 
     sko.close()
 
